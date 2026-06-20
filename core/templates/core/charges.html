@@ -1,0 +1,157 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Charges & Import Duty — BestCars{% endblock %}
+{% block meta_desc %}Understand how KRA calculates import duty on Japanese vehicles. Full breakdown of all taxes applied at clearance.{% endblock %}
+
+{% block content %}
+
+<section class="page-hero page-hero--short">
+  <div class="page-hero__content">
+    <p class="section-eyebrow">Transparency First</p>
+    <h1 class="page-hero__title">Charges & Import Duty</h1>
+    <p>We believe you should understand every shilling before committing. Here's exactly how KRA calculates what you'll pay.</p>
+  </div>
+</section>
+
+<!-- DUTY OVERVIEW -->
+<section class="duty-section section-light">
+  <div class="container">
+
+    <div class="duty-intro reveal-up">
+      <div class="duty-intro__text">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="section-title">How KRA Calculates Import Duty</h2>
+        <p>Kenya Revenue Authority uses a set of standard inputs to determine the taxable value of your imported vehicle. Understanding these helps you plan your budget accurately.</p>
+      </div>
+      <div class="duty-intro__visual" aria-hidden="true">
+        <div class="duty-badge-stack">
+          <div class="duty-badge">KRA</div>
+          <div class="duty-badge-line"></div>
+          <div class="duty-badge duty-badge--gold">Your Tax</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALUATION FACTORS -->
+    <div class="factors-grid reveal-up">
+      <div class="factor-card">
+        <div class="factor-icon"><i class="ph ph-tag"></i></div>
+        <h3>CRSP Value</h3>
+        <p>KRA's <strong>Current Retail Selling Price</strong> — a benchmark value they set for each vehicle model, independent of what you actually paid at auction.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-icon"><i class="ph ph-calendar-blank"></i></div>
+        <h3>Depreciation</h3>
+        <p>A depreciation rate is applied based on the <strong>age of the vehicle</strong>, reducing the taxable base. Newer vehicles have higher duty; older ones benefit from depreciation allowances.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-icon"><i class="ph ph-engine"></i></div>
+        <h3>Engine & Fuel</h3>
+        <p>Engine size and fuel type determine which <strong>excise duty band</strong> applies. Larger engines and certain fuel types attract higher excise rates.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-icon"><i class="ph ph-gauge"></i></div>
+        <h3>Mileage</h3>
+        <p>Any vehicle with <strong>over 1,000 km</strong> on the odometer is classified as a used vehicle for valuation purposes — which affects how the duty is computed.</p>
+      </div>
+    </div>
+
+    <!-- TAX BREAKDOWN TABLE -->
+    <div class="tax-table-wrap reveal-up">
+      <p class="section-eyebrow" style="text-align:center; margin-bottom: 0.5rem">Taxes Applied at Clearance</p>
+      <h2 class="section-title" style="text-align:center">What You Pay at Mombasa Port</h2>
+
+      <div class="tax-table">
+        <div class="tax-row tax-row--header">
+          <span>Tax / Levy</span>
+          <span>Rate</span>
+          <span>Applied On</span>
+        </div>
+        <div class="tax-row reveal-up">
+          <div class="tax-row__name">
+            <div class="tax-dot tax-dot--1"></div>
+            <strong>Import Duty</strong>
+          </div>
+          <div class="tax-row__rate">
+            <span class="tax-rate">25%</span>
+          </div>
+          <div class="tax-row__basis">On CRSP (after depreciation)</div>
+        </div>
+        <div class="tax-row reveal-up delay-1">
+          <div class="tax-row__name">
+            <div class="tax-dot tax-dot--2"></div>
+            <strong>Excise Duty</strong>
+          </div>
+          <div class="tax-row__rate">
+            <span class="tax-rate">Banded</span>
+          </div>
+          <div class="tax-row__basis">By engine size &amp; fuel type</div>
+        </div>
+        <div class="tax-row reveal-up delay-2">
+          <div class="tax-row__name">
+            <div class="tax-dot tax-dot--3"></div>
+            <strong>VAT</strong>
+          </div>
+          <div class="tax-row__rate">
+            <span class="tax-rate">16%</span>
+          </div>
+          <div class="tax-row__basis">On (CRSP + Import Duty + Excise)</div>
+        </div>
+        <div class="tax-row reveal-up delay-3">
+          <div class="tax-row__name">
+            <div class="tax-dot tax-dot--4"></div>
+            <strong>Railway Dev. Levy</strong>
+          </div>
+          <div class="tax-row__rate">
+            <span class="tax-rate">2%</span>
+          </div>
+          <div class="tax-row__basis">On CRSP value</div>
+        </div>
+        <div class="tax-row reveal-up delay-4">
+          <div class="tax-row__name">
+            <div class="tax-dot tax-dot--5"></div>
+            <strong>Import Declaration Fee</strong>
+          </div>
+          <div class="tax-row__rate">
+            <span class="tax-rate">3.5%</span>
+          </div>
+          <div class="tax-row__basis">On CRSP value</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="duty-note reveal-up">
+      <i class="ph ph-info"></i>
+      <div>
+        <strong>Need an accurate duty estimate?</strong>
+        <p>Duty calculations depend on your specific vehicle's CRSP, age, and engine size. Contact us and we'll work out the full landed cost for you — for free, with no obligation.</p>
+        <a href="{% url 'contact' %}" class="btn btn--gold" style="margin-top: 1rem">Get a Free Duty Quote</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BestCars FEE NOTE -->
+<section class="fee-section">
+  <div class="container">
+    <div class="fee-inner reveal-up">
+      <div class="fee-content">
+        <p class="section-eyebrow">Our Charges</p>
+        <h2 class="section-title" style="color: var(--ivory)">BestCars Service Fee</h2>
+        <p style="color: var(--steel)">In addition to KRA taxes, our service fee covers sourcing at Japan's auctions, full shipping logistics, port clearance handling, and delivery coordination. We quote this upfront — no hidden extras.</p>
+        <p style="color: var(--steel); margin-top: 1rem">Our fee is competitive and fixed per transaction. Contact us for a full landed cost breakdown specific to the car you want.</p>
+      </div>
+      <div class="fee-actions">
+        <a href="{% url 'contact' %}" class="btn btn--gold btn--lg">Request Full Quotation</a>
+        <a href="tel:+254117547500" class="btn btn--ghost btn--lg">
+          <i class="ph ph-phone"></i> Speak to Pauline
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

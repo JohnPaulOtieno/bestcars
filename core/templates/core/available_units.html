@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Available Units — BestCars{% endblock %}
+
+{% block content %}
+
+<section class="page-hero page-hero--short">
+  <div class="page-hero__content">
+    <p class="section-eyebrow">Current Stock</p>
+    <h1 class="page-hero__title">Available Units</h1>
+    <p>Every car below is available for immediate import order. Prices include landing cost estimate.</p>
+  </div>
+</section>
+
+<section class="units-page">
+  <div class="container">
+
+    <!-- FILTERS -->
+    <form class="filters-bar" method="get" id="filterForm">
+      <div class="filter-group">
+        <label for="make">Make</label>
+        <select name="make" id="make" onchange="this.form.submit()">
+          <option value="">All Makes</option>
+          {% for m in makes %}
+          <option value="{{ m }}" {% if m == selected_make %}selected{% endif %}>{{ m }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="fuel">Fuel Type</label>
+        <select name="fuel" id="fuel" onchange="this.form.submit()">
+          <option value="">All Fuel Types</option>
+          <option value="petrol" {% if selected_fuel == 'petrol' %}selected{% endif %}>Petrol</option>
+          <option value="diesel" {% if selected_fuel == 'diesel' %}selected{% endif %}>Diesel</option>
+          <option value="hybrid" {% if selected_fuel == 'hybrid' %}selected{% endif %}>Hybrid</option>
+          <option value="electric" {% if selected_fuel == 'electric' %}selected{% endif %}>Electric</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="transmission">Transmission</label>
+        <select name="transmission" id="transmission" onchange="this.form.submit()">
+          <option value="">All Types</option>
+          <option value="automatic" {% if selected_transmission == 'automatic' %}selected{% endif %}>Automatic</option>
+          <option value="manual" {% if selected_transmission == 'manual' %}selected{% endif %}>Manual</option>
+        </select>
+      </div>
+
+      {% if selected_make or selected_fuel or selected_transmission %}
+      <a href="{% url 'available_units' %}" class="filter-clear">Clear Filters</a>
+      {% endif %}
+
+      <span class="filter-count">{{ cars|length }} unit{{ cars|length|pluralize }} found</span>
+    </form>
+
+    <!-- CARS GRID -->
+    {% if cars %}
+    <div class="cars-grid cars-grid--full">
+      {% for car in cars %}
+      <article class="car-card reveal-up" style="animation-delay: {{ forloop.counter0 }}50ms">
+        <div class="car-card__image">
+          {% if car.image %}
+          <img src="{{ car.image.url }}" alt="{{ car }}" loading="lazy" />
+          {% else %}
+          <div class="car-card__no-image">
+            <i class="ph ph-car"></i>
+          </div>
+          {% endif %}
+          {% if car.badge %}
+          <span class="car-badge">{{ car.badge }}</span>
+          {% endif %}
+        </div>
+        <div class="car-card__body">
+          <p class="car-card__year">{{ car.year }}</p>
+          <h3 class="car-card__title">{{ car.make }} {{ car.model }}</h3>
+          {% if car.description %}
+          <p class="car-card__desc">{{ car.description|truncatewords:18 }}</p>
+          {% endif %}
+          <ul class="car-card__specs">
+            <li><i class="ph ph-engine"></i> {{ car.engine_cc }}cc</li>
+            <li><i class="ph ph-gas-pump"></i> {{ car.get_fuel_type_display }}</li>
+            <li><i class="ph ph-gauge"></i> {{ car.mileage|floatformat:0 }} km</li>
+            <li><i class="ph ph-arrows-clockwise"></i> {{ car.get_transmission_display }}</li>
+          </ul>
+          <div class="car-card__footer">
+            <span class="car-card__price">KES {{ car.price|floatformat:0 }}</span>
+            <a href="{% url 'contact' %}?car={{ car.make }} {{ car.model }} {{ car.year }}" class="btn btn--sm btn--gold">Inquire</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="empty-units empty-units--page">
+      <i class="ph ph-car-profile"></i>
+      <h3>No units found</h3>
+      <p>Try adjusting your filters, or <a href="{% url 'contact' %}">contact us</a> — we source on request.</p>
+      {% if selected_make or selected_fuel or selected_transmission %}
+      <a href="{% url 'available_units' %}" class="btn btn--outline">Clear Filters</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- CUSTOM ORDER BANNER -->
+<section class="cta-banner cta-banner--compact">
+  <div class="cta-banner__bg" aria-hidden="true"></div>
+  <div class="container cta-banner__inner reveal-up">
+    <div>
+      <h3 style="color: var(--ivory)">Don't See What You Need?</h3>
+      <p style="color: var(--steel)">We source on request from Japan's top auctions. Tell us your spec and budget.</p>
+    </div>
+    <a href="{% url 'contact' %}" class="btn btn--gold">Request a Specific Car</a>
+  </div>
+</section>
+
+{% endblock %}

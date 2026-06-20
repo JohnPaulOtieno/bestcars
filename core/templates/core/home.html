@@ -1,0 +1,357 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ══════════════════════════════════════
+     HERO — full-viewport video
+══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-video-wrap">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="{% static 'CX5 VIDEO - video.mp4' %}" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <!-- Route ribbon animation: Japan → Kenya -->
+    <div class="route-ribbon" aria-hidden="true">
+      <span class="route-dot route-dot--start"></span>
+      <svg class="route-line" viewBox="0 0 200 12" preserveAspectRatio="none">
+        <line x1="0" y1="6" x2="200" y2="6" />
+        <circle class="route-traveller" cx="0" cy="6" r="4" />
+      </svg>
+      <span class="route-dot route-dot--end"></span>
+      <span class="route-label route-label--left">Japan</span>
+      <span class="route-label route-label--right">Kenya</span>
+    </div>
+
+    <p class="hero-eyebrow reveal-up">Premium Import Specialists</p>
+    <h1 class="hero-headline reveal-up delay-1">
+      Every Road<br />
+      <em>Begins in Japan.</em>
+    </h1>
+    <p class="hero-sub reveal-up delay-2">
+      We source, ship, clear and deliver the finest Japanese vehicles — directly to you in Kenya. No middlemen. No surprises.
+    </p>
+    <div class="hero-actions reveal-up delay-3">
+      <a href="{% url 'available_units' %}" class="btn btn--gold">View Available Units</a>
+      <a href="{% url 'contact' %}" class="btn btn--ghost">Inquire Today</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════ -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item" data-count="500">
+      <span class="stat-num" data-target="500">0</span><span class="stat-unit">+</span>
+      <span class="stat-label">Cars Delivered</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" data-count="8">
+      <span class="stat-num" data-target="8">0</span>
+      <span class="stat-label">Years Importing</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">98</span><span class="stat-unit">%</span>
+      <span class="stat-label">Client Satisfaction</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" data-count="47">
+      <span class="stat-num" data-target="47">0</span>
+      <span class="stat-label">Counties Served</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     WHY BESTCARS
+══════════════════════════════════════ -->
+<section class="why-section section-light">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <p class="section-eyebrow">Why Choose BestCars</p>
+      <h2 class="section-title">The Difference Is in the Detail</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal-up">
+        <div class="why-icon">
+          <i class="ph ph-seal-check"></i>
+        </div>
+        <h3>Auction-Grade Quality</h3>
+        <p>Every car we source is verified through Japan's rigorous auction grading system. Grade 4 and above only — clean interiors, documented history, no hidden damage.</p>
+      </div>
+      <div class="why-card reveal-up delay-1">
+        <div class="why-icon">
+          <i class="ph ph-currency-dollar"></i>
+        </div>
+        <h3>Transparent Pricing</h3>
+        <p>We show you the full cost from day one — auction price, shipping, import duty, and our fee. No surprise extras at the port. What we quote is what you pay.</p>
+      </div>
+      <div class="why-card reveal-up delay-2">
+        <div class="why-icon">
+          <i class="ph ph-map-pin-line"></i>
+        </div>
+        <h3>Door-to-Door Delivery</h3>
+        <p>From Osaka to your driveway in Nairobi. We handle KPA, KRA, KEBS and NTSA registration — you just pick your keys.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-title">From Japan to Your Hands</h2>
+    </div>
+
+    <div class="process-track">
+      <div class="process-line" aria-hidden="true"></div>
+
+      <div class="process-step reveal-up">
+        <div class="process-node">
+          <i class="ph ph-magnifying-glass"></i>
+        </div>
+        <div class="process-content">
+          <h4>Source</h4>
+          <p>We scout Japan's top auction houses — USS, TAA, JU — to find your exact spec at the best price.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal-up delay-1">
+        <div class="process-node">
+          <i class="ph ph-boat"></i>
+        </div>
+        <div class="process-content">
+          <h4>Ship</h4>
+          <p>Your vehicle is loaded onto a RoRo vessel from Osaka or Tokyo bound for Mombasa Port.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal-up delay-2">
+        <div class="process-node">
+          <i class="ph ph-file-text"></i>
+        </div>
+        <div class="process-content">
+          <h4>Clear</h4>
+          <p>We handle all KRA import duty, KEBS inspection, and port clearance paperwork on your behalf.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal-up delay-3">
+        <div class="process-node">
+          <i class="ph ph-key"></i>
+        </div>
+        <div class="process-content">
+          <h4>Drive</h4>
+          <p>Your car arrives freshly serviced and ready. NTSA registration support included.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FEATURED UNITS
+══════════════════════════════════════ -->
+<section class="units-section section-light">
+  <div class="container">
+    <div class="section-header-row reveal-up">
+      <div>
+        <p class="section-eyebrow">Current Stock</p>
+        <h2 class="section-title">Featured Units</h2>
+      </div>
+      <a href="{% url 'available_units' %}" class="btn btn--outline">All Available Units →</a>
+    </div>
+
+    {% if featured_cars %}
+    <div class="cars-grid">
+      {% for car in featured_cars %}
+      <article class="car-card reveal-up" style="animation-delay: {{ forloop.counter0 }}00ms">
+        <div class="car-card__image">
+          {% if car.image %}
+          <img src="{{ car.image.url }}" alt="{{ car }}" loading="lazy" />
+          {% else %}
+          <div class="car-card__no-image">
+            <i class="ph ph-car"></i>
+          </div>
+          {% endif %}
+          {% if car.badge %}
+          <span class="car-badge">{{ car.badge }}</span>
+          {% endif %}
+        </div>
+        <div class="car-card__body">
+          <p class="car-card__year">{{ car.year }}</p>
+          <h3 class="car-card__title">{{ car.make }} {{ car.model }}</h3>
+          <ul class="car-card__specs">
+            <li><i class="ph ph-engine"></i> {{ car.engine_cc }}cc</li>
+            <li><i class="ph ph-gas-pump"></i> {{ car.get_fuel_type_display }}</li>
+            <li><i class="ph ph-gauge"></i> {{ car.mileage|floatformat:0 }} km</li>
+            <li><i class="ph ph-arrows-clockwise"></i> {{ car.get_transmission_display }}</li>
+          </ul>
+          <div class="car-card__footer">
+            <span class="car-card__price">KES {{ car.price|floatformat:0 }}</span>
+            <a href="{% url 'contact' %}?car={{ car.make }} {{ car.model }} {{ car.year }}" class="btn btn--sm btn--gold">Inquire</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-units">
+      <i class="ph ph-car-profile"></i>
+      <p>New stock arriving soon. <a href="{% url 'contact' %}">Contact us</a> to reserve a unit.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <p class="section-eyebrow">Client Stories</p>
+      <h2 class="section-title">What Our Clients Say</h2>
+    </div>
+
+    <div class="testimonials-track" id="testimonialsTrack">
+      {% if testimonials %}
+        {% for t in testimonials %}
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            {% for i in "12345" %}
+            <i class="ph ph-star{% if forloop.counter > t.rating %}-fill{% else %}-fill{% endif %} star-icon"></i>
+            {% endfor %}
+          </div>
+          <blockquote class="testimonial-quote">"{{ t.quote }}"</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">{{ t.name|first }}</div>
+            <div>
+              <strong>{{ t.name }}</strong>
+              {% if t.location %}<span>{{ t.location }}</span>{% endif %}
+              {% if t.car_purchased %}<em>{{ t.car_purchased }}</em>{% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default testimonials until admin adds real ones -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i>
+          </div>
+          <blockquote class="testimonial-quote">"I imported my Mazda CX-5 through BestCars and the process was handled from start to finish without a single stress. From Japan to Nairobi in six weeks — and exactly as quoted."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <strong>James Mwangi</strong>
+              <span>Nairobi, Westlands</span>
+              <em>2022 Mazda CX-5</em>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i>
+          </div>
+          <blockquote class="testimonial-quote">"Big Steve guided me through every step — from choosing the right spec for my budget to explaining the import duty calculations. The car arrived in immaculate condition."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <strong>Sarah Kamau</strong>
+              <span>Mombasa</span>
+              <em>2021 Toyota RAV4 Hybrid</em>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i>
+          </div>
+          <blockquote class="testimonial-quote">"This is my third car through BestCars. Their transparency on pricing is what sets them apart — no surprises at the port. Pauline is extremely professional and responsive."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div>
+              <strong>Peter Odhiambo</strong>
+              <span>Kisumu</span>
+              <em>2023 Subaru Forester</em>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i><i class="ph ph-star-fill star-icon"></i>
+            <i class="ph ph-star-fill star-icon"></i>
+          </div>
+          <blockquote class="testimonial-quote">"My Land Cruiser Prado arrived two weeks ahead of schedule. NTSA registration was handled seamlessly. BestCars is simply the best in the business — I recommend them to everyone."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">G</div>
+            <div>
+              <strong>Grace Njeri</strong>
+              <span>Nakuru</span>
+              <em>2022 Toyota Land Cruiser Prado</em>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="testimonials-controls">
+      <button class="t-btn" id="tPrev" aria-label="Previous"><i class="ph ph-arrow-left"></i></button>
+      <div class="t-dots" id="tDots"></div>
+      <button class="t-btn" id="tNext" aria-label="Next"><i class="ph ph-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="cta-banner__bg" aria-hidden="true"></div>
+  <div class="container cta-banner__inner reveal-up">
+    <div>
+      <p class="section-eyebrow" style="color: var(--gold)">Ready to Import?</p>
+      <h2 class="section-title" style="color: var(--ivory)">Tell Us the Car You Want.</h2>
+      <p style="color: var(--steel); max-width: 480px">We source it, ship it, clear it. You drive it.</p>
+    </div>
+    <div class="cta-banner__actions">
+      <a href="{% url 'contact' %}" class="btn btn--gold btn--lg">Start Your Order</a>
+      <a href="tel:+254117547500" class="btn btn--ghost btn--lg">
+        <i class="ph ph-phone"></i> Call Pauline
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

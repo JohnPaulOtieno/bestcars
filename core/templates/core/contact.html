@@ -1,0 +1,128 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us — BestCars{% endblock %}
+
+{% block content %}
+
+<section class="page-hero page-hero--short">
+  <div class="page-hero__content">
+    <p class="section-eyebrow">Let's Talk Cars</p>
+    <h1 class="page-hero__title">Contact BestCars</h1>
+    <p>Ready to import? Have a question? Drop us a message and we'll get back to you within 24 hours.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- CONTACT INFO -->
+      <div class="contact-info reveal-up">
+        <h2 class="contact-info__title">Speak to Our Team</h2>
+        <p class="contact-info__sub">We're here to guide you through the entire import process — from choosing the right car in Japan to handing you the keys in Kenya.</p>
+
+        <div class="contact-person">
+          <div class="contact-person__avatar">P</div>
+          <div>
+            <strong class="contact-person__name">Pauline Gitahi</strong>
+            <span class="contact-person__role">Client Relations</span>
+            <a href="tel:+254117547500" class="contact-person__phone">
+              <i class="ph ph-phone-call"></i> 0117 547 500
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-person">
+          <div class="contact-person__avatar">S</div>
+          <div>
+            <strong class="contact-person__name">Big Steve</strong>
+            <span class="contact-person__role">Import Specialist</span>
+            <a href="tel:+254798667913" class="contact-person__phone">
+              <i class="ph ph-phone-call"></i> 0798 667 913
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <i class="ph ph-envelope-simple"></i>
+          <div>
+            <span>Email Us</span>
+            <a href="mailto:bestcarsimport@gmail.com">bestcarsimport@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-channel">
+          <i class="ph ph-whatsapp-logo"></i>
+          <div>
+            <span>WhatsApp</span>
+            <a href="https://wa.me/254117547500" target="_blank" rel="noopener">Chat with Pauline</a>
+          </div>
+        </div>
+
+        <div class="contact-hours">
+          <i class="ph ph-clock"></i>
+          <div>
+            <strong>Business Hours</strong>
+            <span>Mon – Sat · 8:00 AM – 6:00 PM EAT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form-wrap reveal-up delay-1">
+        <form class="contact-form" method="post" action="{% url 'contact' %}">
+          {% csrf_token %}
+
+          {% if request.GET.car %}
+          <input type="hidden" name="car_interest" value="{{ request.GET.car }}" />
+          <div class="form-inquiry-badge">
+            <i class="ph ph-car"></i>
+            Inquiring about: <strong>{{ request.GET.car }}</strong>
+          </div>
+          {% endif %}
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="07XX XXX XXX" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+
+          {% if not request.GET.car %}
+          <div class="form-group">
+            <label for="car_interest">Car You're Interested In</label>
+            <input type="text" id="car_interest" name="car_interest" placeholder="e.g. Toyota Prado 2022, budget ~3M KES" />
+          </div>
+          {% else %}
+          <input type="hidden" name="car_interest" value="{{ request.GET.car }}" />
+          {% endif %}
+
+          <div class="form-group">
+            <label for="message">Your Message <span class="required">*</span></label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us what you're looking for, your timeline, budget or any questions..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--gold btn--full btn--lg">
+            <i class="ph ph-paper-plane-tilt"></i>
+            Send Message
+          </button>
+
+          <p class="form-note">We respond within 24 hours. Your details are never shared.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

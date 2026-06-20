@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}BestCars — Premium Japanese Imports to Kenya{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}BestCars imports premium Japanese vehicles directly to Kenya. Quality assured, transparently priced, delivered to your door.{% endblock %}" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons (Phosphor) -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="{% url 'home' %}" class="nav-logo">
+      <span class="logo-best">BEST</span><span class="logo-cars">CARS</span>
+      <span class="logo-tag">JAPAN · KENYA</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+      <li><a href="{% url 'available_units' %}" class="nav-link {% if request.resolver_match.url_name == 'available_units' %}active{% endif %}">Available Units</a></li>
+      <li><a href="{% url 'charges' %}" class="nav-link {% if request.resolver_match.url_name == 'charges' %}active{% endif %}">Charges & Import Duty</a></li>
+      <li><a href="{% url 'contact' %}" class="nav-link nav-cta {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Inquire Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── MAIN CONTENT ── -->
+<main>
+  {% if messages %}
+  <div class="flash-messages">
+    {% for msg in messages %}
+    <div class="flash flash--{{ msg.tags }}">
+      {% if msg.tags == 'success' %}
+        <i class="ph ph-check-circle"></i>
+      {% else %}
+        <i class="ph ph-warning-circle"></i>
+      {% endif %}
+      {{ msg }}
+      <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <a href="{% url 'home' %}" class="nav-logo">
+        <span class="logo-best">BEST</span><span class="logo-cars">CARS</span>
+        <span class="logo-tag">JAPAN · KENYA</span>
+      </a>
+      <p class="footer-tagline">Bridging the distance between Japan's finest roads and Kenya's open highways.</p>
+    </div>
+
+    <div class="footer-nav">
+      <h4 class="footer-heading">Pages</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'available_units' %}">Available Units</a></li>
+        <li><a href="{% url 'charges' %}">Charges & Import Duty</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4 class="footer-heading">Get in Touch</h4>
+      <ul class="contact-list">
+        <li>
+          <i class="ph ph-user"></i>
+          <span>Pauline Gitahi</span>
+          <a href="tel:+254117547500">0117 547 500</a>
+        </li>
+        <li>
+          <i class="ph ph-user"></i>
+          <span>Big Steve</span>
+          <a href="tel:+254798667913">0798 667 913</a>
+        </li>
+        <li>
+          <i class="ph ph-envelope-simple"></i>
+          <a href="mailto:bestcarsimport@gmail.com">bestcarsimport@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <p>© {% now "Y" %} BestCars Import Ltd. All rights reserved.</p>
+    <p class="footer-bar-right">Direct Japanese Imports · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
