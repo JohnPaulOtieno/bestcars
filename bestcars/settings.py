@@ -1,12 +1,27 @@
+import os
+import dj_database_url
 from pathlib import Path
+
+from os import getenv #neon database integration
+from dotenv import load_dotenv #neon database integration
+
+load_dotenv() #neon database integration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-bestcars-change-this-in-production-2024'
-
-DEBUG = True
+# Read from environment in production, fall back to dev defaults locally
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only-change-in-production')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+    'https://bestcars-blue.vercel.app',
+]
+
+# Tell Django it's behind Vercel's HTTPS proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   # must be right after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -48,11 +64,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bestcars.wsgi.application'
 
+# ── DATABASE ─────────────────────────────────────────────
+# Production: set DATABASE_URL env var in Vercel dashboard
+# Local dev:  falls back to SQLite
+#DATABASE_URL = os.environ.get('DATABASE_URL')
+#if DATABASE_URL:
+    #DATABASES = {
+        #'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    #}
+#else:
+    #DATABASES = {
+        #'default': {
+            #'ENGINE': 'django.db.backends.sqlite3',
+            #'NAME': BASE_DIR / 'db.sqlite3',
+        #}
+    #}
+
+#New Database of Neon 
+# Add these at the top of your settings.py
+
+# Replace the DATABASES section of your settings.py with this
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': getenv('PGDATABASE'),
+    'USER': getenv('PGUSER'),
+    'PASSWORD': getenv('PGPASSWORD'),
+    'HOST': getenv('PGHOST'),
+    'PORT': getenv('PGPORT', 5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+    'DISABLE_SERVER_SIDE_CURSORS': True,
+    'CONN_HEALTH_CHECKS': True,
+  }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -67,6 +112,7 @@ TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 USE_TZ = True
 
+# ── STATIC FILES (WhiteNoise serves them) ────────────────
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -74,6 +120,16 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+    },
+}
+
+# ── MEDIA (user-uploaded car photos) ─────────────────────
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
