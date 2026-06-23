@@ -44,7 +44,6 @@ db.sqlite3
 
 # Project specific
 .claude/
-assets/
 
 # OS
 .DS_Store
